@@ -1,0 +1,4 @@
+Java is object oreinted programming language
+Java is simple
+Java is Robust
+Java is multithreaded
