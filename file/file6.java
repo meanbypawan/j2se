@@ -9,6 +9,7 @@ class Customer implements Serializable{
   private String name;
   private String mobile;
   private int age;
+  int serialVersionUID = 1L;
   public Customer(int id, String name, String mobile, int age){
     this.id = id;
     this.name = name;
@@ -16,7 +17,8 @@ class Customer implements Serializable{
     this.age = age;
   }
   public Customer(){}
-  public int getId(){return id;}
+  public int getId
+  (){return id;}
   public String getName(){return name;}
   public String getMobile(){return mobile;}
   public int getAge(){return age;}
@@ -28,11 +30,16 @@ class ReadingObject{
   public static void main(String args[]){
     try{
       FileInputStream fin = new FileInputStream("customer.txt");
-      ObjectInputStream ois = new ObjectInputStream(fin);
-      
-      Customer c = (Customer)ois.readObject(); // Object
-      System.out.println(c);//c.toString()
-      
+      while(true){
+      try{ 
+        ObjectInputStream ois = new ObjectInputStream(fin);
+        Customer c = (Customer)ois.readObject();
+        System.out.println(c);//c.toString()
+       }
+       catch(java.io.IOException e){
+         break;
+       }
+      }
     }
     catch(Exception e){
       e.printStackTrace();
@@ -43,10 +50,10 @@ class WritingObject{
   public static void main(String ar[]){
     try{
        FileOutputStream fout = 
-                new FileOutputStream("customer.txt");
+                new FileOutputStream("customer.txt",true);
        ObjectOutputStream oos =
                 new ObjectOutputStream(fout);
-       Customer c = new Customer(1,"Cheeku","90091122",5);
+       Customer c = new Customer(2,"Peeku","90091133",8);
        
        oos.writeObject(c);
        System.out.println("Operation Success..");
